@@ -294,7 +294,7 @@ import StatusBadge from '@/components/StatusBadge.vue'
 import Input from '@/components/Input.vue'
 import Textarea from '@/components/Textarea.vue'
 import Modal from '@/components/Modal.vue'
-import type { Ticket, TicketFormData } from '@/types'
+import type { Ticket } from '@/types'
 
 const ticketsStore = useTicketsStore()
 

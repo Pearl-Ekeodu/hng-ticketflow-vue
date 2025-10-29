@@ -18,7 +18,7 @@ const authStore = useAuthStore()
 authStore.initializeAuth()
 
 // Add router guard
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ path: '/', query: { auth: 'login' } })
   } else {

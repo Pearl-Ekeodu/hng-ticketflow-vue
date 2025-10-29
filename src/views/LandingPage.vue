@@ -226,7 +226,6 @@ import { useAuthStore } from '@/stores/auth'
 import Button from '@/components/Button.vue'
 import Card from '@/components/Card.vue'
 import Input from '@/components/Input.vue'
-import Textarea from '@/components/Textarea.vue'
 import Modal from '@/components/Modal.vue'
 
 const router = useRouter()
