@@ -56,7 +56,7 @@
           <Button
             variant="primary"
             size="sm"
-            @click="handleLoginClick"
+            @click="router.push('/?auth=login')"
             aria-label="Login to your account"
           >
             Login
@@ -79,15 +79,6 @@ const authStore = useAuthStore()
 const handleLogout = () => {
   authStore.logout()
   router.push('/')
-}
-
-const handleLoginClick = () => {
-  // If already on home page, use replace to force route update
-  if (route.path === '/') {
-    router.replace({ path: '/', query: { auth: 'login' } })
-  } else {
-    router.push({ path: '/', query: { auth: 'login' } })
-  }
 }
 
 const isActive = (path: string) => {
