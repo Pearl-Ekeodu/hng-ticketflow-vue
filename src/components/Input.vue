@@ -10,6 +10,9 @@
       :class="inputClasses"
       :aria-invalid="error ? 'true' : 'false'"
       :aria-describedby="error ? `${inputId}-error` : undefined"
+      :value="modelValue"
+      @input="handleInput"
+      @change="handleChange"
       v-bind="$attrs"
     />
     <p v-if="error" :id="`${inputId}-error`" class="input-error-text" role="alert">
@@ -32,6 +35,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const modelValue = defineModel<string>({ default: '' })
 const inputRef = ref<HTMLInputElement>()
 
 const inputId = computed(() => `input-${Math.random().toString(36).substr(2, 9)}`)
@@ -40,6 +44,16 @@ const inputClasses = computed(() => [
   'input',
   props.error && 'input-error'
 ].filter(Boolean).join(' '))
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  modelValue.value = target.value
+}
+
+const handleChange = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  modelValue.value = target.value
+}
 </script>
 
 <style scoped>
