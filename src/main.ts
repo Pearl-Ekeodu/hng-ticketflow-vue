@@ -28,3 +28,4 @@ router.beforeEach((to, from, next) => {
 
 app.mount('#app')
 
+
