@@ -221,7 +221,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import Button from '@/components/Button.vue'
@@ -268,12 +268,26 @@ const signupErrors = reactive({
 const isLoggingIn = ref(false)
 const isSigningUp = ref(false)
 
-// Check URL params on mount to open modals
-onMounted(() => {
+// Function to handle auth query parameter changes
+const handleAuthQuery = () => {
   const authParam = route.query.auth
   if (authParam === 'login') {
     openLoginModal()
   } else if (authParam === 'signup') {
+    openSignupModal()
+  }
+}
+
+// Check URL params on mount to open modals
+onMounted(() => {
+  handleAuthQuery()
+})
+
+// Watch for route query changes (when already on the page)
+watch(() => route.query.auth, (newAuth) => {
+  if (newAuth === 'login') {
+    openLoginModal()
+  } else if (newAuth === 'signup') {
     openSignupModal()
   }
 })
