@@ -268,8 +268,8 @@ const signupErrors = reactive({
 const isLoggingIn = ref(false)
 const isSigningUp = ref(false)
 
-// Function to handle auth query parameter changes
-const handleAuthQuery = () => {
+// Check URL params on mount and watch for changes to open modals
+const checkAuthParam = () => {
   const authParam = route.query.auth
   if (authParam === 'login') {
     openLoginModal()
@@ -278,23 +278,14 @@ const handleAuthQuery = () => {
   }
 }
 
-// Check URL params on mount to open modals
 onMounted(() => {
-  handleAuthQuery()
+  checkAuthParam()
 })
 
-// Watch for route query changes (when already on the page)
-watch(
-  () => route.fullPath,
-  (newPath) => {
-    // Check if login or signup is in the URL
-    if (newPath.includes('auth=login')) {
-      openLoginModal()
-    } else if (newPath.includes('auth=signup')) {
-      openSignupModal()
-    }
-  }
-)
+// Watch for route query changes (e.g., when clicking login button from navbar)
+watch(() => route.query.auth, () => {
+  checkAuthParam()
+})
 
 const openLoginModal = () => {
   isLoginModalOpen.value = true
