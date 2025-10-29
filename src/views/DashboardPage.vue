@@ -193,6 +193,7 @@
         </div>
       </form>
     </Modal>
+    <Footer />
   </main>
 </template>
 
@@ -206,6 +207,7 @@ import StatusBadge from '@/components/StatusBadge.vue'
 import Input from '@/components/Input.vue'
 import Textarea from '@/components/Textarea.vue'
 import Modal from '@/components/Modal.vue'
+import Footer from '@/components/Footer.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

@@ -216,6 +216,7 @@
         </p>
       </form>
     </Modal>
+    <Footer />
   </div>
 </template>
 
@@ -227,6 +228,7 @@ import Button from '@/components/Button.vue'
 import Card from '@/components/Card.vue'
 import Input from '@/components/Input.vue'
 import Modal from '@/components/Modal.vue'
+import Footer from '@/components/Footer.vue'
 
 const router = useRouter()
 const route = useRoute()
