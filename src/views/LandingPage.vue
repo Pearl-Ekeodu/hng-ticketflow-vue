@@ -284,13 +284,17 @@ onMounted(() => {
 })
 
 // Watch for route query changes (when already on the page)
-watch(() => route.query.auth, (newAuth) => {
-  if (newAuth === 'login') {
-    openLoginModal()
-  } else if (newAuth === 'signup') {
-    openSignupModal()
+watch(
+  () => route.fullPath,
+  (newPath) => {
+    // Check if login or signup is in the URL
+    if (newPath.includes('auth=login')) {
+      openLoginModal()
+    } else if (newPath.includes('auth=signup')) {
+      openSignupModal()
+    }
   }
-})
+)
 
 const openLoginModal = () => {
   isLoginModalOpen.value = true
