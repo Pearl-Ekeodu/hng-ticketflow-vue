@@ -273,8 +273,16 @@ const checkAuthParam = () => {
   const authParam = route.query.auth
   if (authParam === 'login') {
     openLoginModal()
+    // Clean up URL - remove auth param after opening modal
+    const query = { ...route.query }
+    delete query.auth
+    router.replace({ query })
   } else if (authParam === 'signup') {
     openSignupModal()
+    // Clean up URL - remove auth param after opening modal
+    const query = { ...route.query }
+    delete query.auth
+    router.replace({ query })
   }
 }
 
